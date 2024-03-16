@@ -14,16 +14,16 @@ def buttonClick():
     global totalscore
     try:
         guess = int(guessBox.get())
-        if 1 <= guess <= maxNo:
-            result = random.randint(0, maxNo + 1)
+        if 0 <= guess <= maxNo:
+            result = random.randint(0, maxNo)
             if guess == result:
-                score += 10
+                score = 10
                 totalscore += 10
             elif guess % 10 == result % 10 or guess // 10 == result // 10:
-                score += 5
+                score = 5
                 totalscore += 5
             elif guess % 10 == result // 10 or guess // 10 == result % 10: 
-                score += 2
+                score = 2
                 totalscore += 2
         else:
             result = "Entry not valid"
@@ -34,6 +34,9 @@ def buttonClick():
     scoreLabel.config(text="Score = " + str(score))
     scoreallLabel.config(text="TotalScore = " + str(totalscore))
     guessBox.delete(0, tk.END)
+
+def enter(event): 
+    buttonClick()
 
 guessLabel = tk.Label(window, text="Enter a number from 01 to " + str(maxNo).zfill(2))
 guessBox = tk.Entry(window)
@@ -51,5 +54,5 @@ scoreLabel.pack()
 scoreallLabel.pack()
 button.pack()
 
+window.bind('<Return>' , enter) 
 window.mainloop()
-
