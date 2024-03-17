@@ -2,16 +2,15 @@ import tkinter as tk
 import random
 
 window = tk.Tk()
-
-maxNo = 99
 score = 0
+maxNo = 99
 totalscore = 0
 guess = 0
 
 def buttonClick():
     global guess
-    global score
     global totalscore
+    score = 0
     try:
         guess = int(guessBox.get())
         if 0 <= guess <= maxNo:
